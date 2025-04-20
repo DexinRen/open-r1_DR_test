@@ -1,0 +1,28 @@
+# Model arguments
+model_name_or_path: Qwen/Qwen2.5-0.5B
+model_revision: main
+torch_dtype: bfloat16
+attn_implementation: flash_attention_2
+
+# Data training arguments
+dataset_name: "open-r1/OpenR1-Math-220k"
+eval_strategy: "no"
+# eval_steps: 1
+save_strategy: "steps"
+save_steps: 500
+do_eval: false
+per_device_eval_batch_size: 1
+# eval_accumulation_steps: 2
+# max_steps: 1000
+
+# SFT trainer config
+learning_rate: 2.5e-6
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+num_train_epochs: 1
+packing: true
+max_seq_length: 4096
+per_device_train_batch_size: 1
+gradient_checkpointing: true
+bf16: true
+output_dir: "data/qwen2.5-0.5B-math220k-default"
